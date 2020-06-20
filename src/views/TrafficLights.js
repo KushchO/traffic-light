@@ -1,8 +1,10 @@
 
 import {mapActions, mapState, mapGetters} from 'vuex';
+import Light from '../components/Light/Light.vue'
 
 export default {
-  name: "TrafficLights",  
+  name: "TrafficLights",
+  components: { Light },
   props: {
     light: {    
       type: String, 
@@ -10,6 +12,11 @@ export default {
       requred: true
     }
     
+  },
+  data(){
+    return {
+      lights: ['green', 'yellow', 'red']
+    }
   },
   watch: {
     done: function(){         
@@ -23,6 +30,7 @@ export default {
         return;
       }
       this.clearMyInterval();
+      this.resetCurrentColor();
     }
   },
   computed:{
@@ -30,7 +38,7 @@ export default {
     ...mapGetters(['getTimer']),
   },
   methods: {
-    ...mapActions(['initTimer', 'clearMyInterval'])
+    ...mapActions(['initTimer', 'clearMyInterval', 'resetCurrentColor'])
   },
   mounted(){    
     if(this.light){

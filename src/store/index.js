@@ -9,6 +9,7 @@ const vuexLocal = new VuexPersistence({
 Vue.use(Vuex)
 
 const SET_COLOR = "SET_COLOR"
+const RESET_COLOR = "RESET_COLOR"
 const SET_TIMER = "SET_TIMER"
 const TOGGLE_LIGHT = "TOGGLE_LIGHT"
 const SET_LIGHT_ON = "SET_LIGHT_ON"
@@ -51,6 +52,9 @@ export default new Vuex.Store({
   mutations: {
     [SET_COLOR]: (state, color) => {
       state.currentColor = color
+    },
+    [RESET_COLOR]: (state) => {
+      state.currentColor = null
     },
     [SET_TIMER]: (state) => {         
       state.currentTick = localStorage.currentTick ? localStorage.currentTick : 0
@@ -100,6 +104,9 @@ export default new Vuex.Store({
   actions: {
     clearMyInterval: ({state}) => {
       clearInterval(state.currentTimer);
+    }, 
+    resetCurrentColor: ({commit}) => {
+      commit(RESET_COLOR);
     }, 
     initTimer: ({commit, state}, color) => { 
       console.log('!!!')    
