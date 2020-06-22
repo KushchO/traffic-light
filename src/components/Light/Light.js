@@ -5,7 +5,7 @@ export default {
   props: {
     light: {
       type: String,
-      requrid: true
+      required: true
     }
   },
   computed:{

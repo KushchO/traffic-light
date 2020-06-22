@@ -9,7 +9,7 @@ export default {
     light: {    
       type: String, 
       default: false,
-      requred: true
+      required: true
     }
     
   },
